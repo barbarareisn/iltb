@@ -1,0 +1,183 @@
+---
+title: "ACOMPANHAMENTO DE PACIENTES EM USO DA INH300MG, BRASIL 2021"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll
+    source_code: embed
+    runtime: shiny
+    navbar: 
+    - { title: "LABEPI", href: "https://laboratoriodeepidemiologia.ufes.br/", align: right}
+    - { title: "O QUE É ILTB?", href: "https://bvsms.saude.gov.br/bvs/publicacoes/manual_recomendacoes_controle_tuberculose_brasil_2_ed.pdf", align: right}
+    - { title: "TUBERCULOSE NO MUNDO", href: "https://agencia.fiocruz.br/tuberculose", align: right}
+    - { icon: fa-address-card, href: "https://www.instagram.com/LABEPIOFICIAL/", align: right}
+    theme: united #cerulean
+   
+---
+
+```{r setup,include=FALSE}
+library(flexdashboard)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(janitor)
+cem <- 10
+trez <- 14
+masc <- 9
+fem <- 15
+branc <- 12
+pret <- 4
+pard <- 8
+solt <- 6
+casa <- 9
+viu <- 3
+sepa <- 5
+uniao <- 1
+etil <- 10
+taba <- 8
+scomo <- 11
+depres <- 4
+diab <- 4
+hiv <- 2
+trab <- 17
+apos <- 3
+desem <- 3
+idade <- c(30.43,51,49,56,36,44,38,46,47,45,48,35,60,40,65,46,72,30,57,44,39,27,19)
+pr <- 4
+es <- 20
+sexpr <- 2
+sexprm <- 2
+trezpr <- 2
+total <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24)
+tot <- 24
+mi <- 44
+```
+Este dashboard apresenta algumas informações clinicas, sociodemográficas e em relação aos sintomas relatados por pacientes em acompanhamento em uso da INH 300mg ou INH100MG, DE 2018 até o presente momento
+
+
+```
+    
+Columns {data-width=900} 
+-----------------------------------------------------------------------
+
+    
+###  Perfil Sociodemográfico da amostra
+
+IDADE DA AMOSTRA
+\
+MÉDIA: 44 anos\
+MEDIANA: 44,5.\
+MODA: 30 e 44
+
+
+```{r}
+plot(idade, pch=2, main = "Distribuição da Idade (em anos)")
+abline(h=mean(idade),col=90)
+
+```
+
+### PRETOS/PRETAS
+
+```{r}
+ valueBox(value = pret, icon = 'fa-user-times', color = "#D8BFD8")
+
+```
+
+### BRANCOS/BRANCAS
+```{r}
+ valueBox(value = branc, icon = 'fa-user-times', color = "#B0E0E6")
+
+```
+
+### PARDOS/PARDAS
+```{r}
+ valueBox(value = pard, icon = 'fa-user-times', color = "#FFFF00")
+
+```
+
+'Columns' {data-width=50} {.tabset}
+-----------------------------------------------------------------------
+CARACTERISTICAS DA AMOSTRA / DOSE ADMINISTRADA
+
+### Homens
+
+```{r}
+  valueBox(value = masc, icon = 'fa-user-times', color = "#2980b9")
+
+
+```
+
+### Mulheres
+```{r}
+  valueBox(value = fem, icon = 'fa-user-times', color = "#9b59b6")
+
+```
+
+### INH300mg
+```{r}
+  valueBox(value = trez, icon = 'fa-users', color = "#D2691E")
+
+```
+
+### INH100mg
+```{r}
+  valueBox(value = cem, icon = 'fa-users', color = "#006400")
+
+```
+
+### Clinico - Etilismo, tabagismo e comorbidades 
+1 = ETILISMO\
+2 = TABAGISMO\
+3 = DIABETES\
+4 = DEPRESSÃO\
+5 = HIV\
+
+```{r}
+pie(c(etil, taba, diab, depres, hiv))
+  
+```
+
+
+Columns {data-width=50} {.tabset}
+-----------------------------------------------------------------------
+
+
+OCUPAÇÃO
+
+### Trabalhador
+```{r}
+valueBox(value = trab, icon = 'fa-1', color = "#006400")
+
+```
+
+### Desempregado
+```{r}
+valueBox(value = desem, icon = 'fa-users', color = "#FF8D00")
+
+```
+
+### Aposentado
+```{r}
+valueBox(value = apos, icon = 'fa-users', color = "#FF5500")
+
+```
+
+Columns {data-width=50} {.tabset}
+-----------------------------------------------------------------------
+
+    
+ESTADO (UF)
+
+
+    
+### ESPIRITO SANTO (ES)
+```{r}
+valueBox(value = es, icon = 'fa-users', color = "#FF5500")
+
+```
+
+### PARANÁ (PR)
+```{r}
+valueBox(value = pr, icon = 'fa-users', color = "#FF5530")
+
+
